@@ -1,0 +1,23 @@
+{
+  "name": "url-shift",
+  "version": "1.0.0",
+  "description": "",
+  "main": "shift.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alchemy-works/url-shift.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alchemy-works/url-shift/issues"
+  },
+  "homepage": "https://github.com/alchemy-works/url-shift#readme",
+  "devDependencies": {
+    "vue": "3.2.29"
+  }
+}
