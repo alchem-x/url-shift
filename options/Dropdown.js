@@ -164,7 +164,7 @@ export default {
             createDialog({
                 id: 'preview-shift',
                 title: 'Preview',
-                width: '800px',
+                width: '1000px',
                 App: {
                     template: `
                       <CodePreviewer :script="script"/>

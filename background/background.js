@@ -1,3 +1,4 @@
+import browser from '../browser.js'
 import { getEnabledStatus, getShiftList, STORE_KEY } from '../store.js'
 import updateIcon from '../updateIcon.js'
 import { getShift } from '../shift.js'
@@ -12,7 +13,7 @@ const context = {
     enabled: await getEnabledStatus(),
 }
 
-async function handleBeforeRequest(request) {
+function handleBeforeRequest(request) {
     if (!context.enabled) {
         return
     }

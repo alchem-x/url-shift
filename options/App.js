@@ -6,8 +6,8 @@ import { getShiftList } from '../store.js'
 
 const _App = css`
   box-sizing: border-box;
-  max-width: 900px;
-  padding: 1rem;
+  max-width: 1000px;
+  padding: 2rem 1rem;
   min-height: 100vh;
   margin: 0 auto;
 `

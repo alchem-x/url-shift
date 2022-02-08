@@ -19,4 +19,7 @@ declare const browser: {
     runtime: {
         openOptionsPage: Function
     }
+    chrome: boolean
 }
+
+declare const chrome: typeof browser

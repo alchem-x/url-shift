@@ -1,3 +1,4 @@
+import browser from '../browser.js'
 import { getEnabledStatus, setEnabledStatus } from '../store.js'
 
 async function handleClickSetting() {

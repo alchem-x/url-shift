@@ -1,7 +1,7 @@
 import { css, hljs, onMounted, ref } from './modules.js'
 
 const _CodePreviewer = css`
-  border: 1px solid #111;
+  border: 1px solid #d0d0d5;
   background-color: #fff;
   overflow: auto;
   max-height: min(400px, 50vh);

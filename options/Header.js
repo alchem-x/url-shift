@@ -1,3 +1,4 @@
+import browser from '../browser.js'
 import { css, onMounted, ref } from './modules.js'
 import { getEnabledStatus, setEnabledStatus, STORE_KEY } from '../store.js'
 

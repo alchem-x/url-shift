@@ -9,8 +9,8 @@ const _ShiftTable = css`
     width: 10%;
   }
 
-  th.percentage-15 {
-    width: 15%;
+  th.percentage-20 {
+    width: 20%;
   }
 
   .text-url {
@@ -34,7 +34,7 @@ export default {
       <table class="ui-table">
         <thead>
         <tr>
-          <th class="text-left percentage-15">Name</th>
+          <th class="text-left percentage-20">Name</th>
           <th>URL</th>
           <th class="percentage-10">Enabled</th>
           <th class="percentage-10"></th>
