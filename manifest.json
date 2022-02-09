@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "URL Shift",
   "version": "0.0.2",
-  "description": "Redirect website URL by rules.",
+  "description": "Intercept HTTP requests through rules written in JavaScript.",
   "homepage_url": "https://github.com/alchemy-works/url-shift",
   "permissions": [
     "webRequest",
