@@ -1,6 +1,6 @@
 {
   "name": "url-shift",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "",
   "main": "shift.js",
   "scripts": {
@@ -18,6 +18,6 @@
   },
   "homepage": "https://github.com/alchemy-works/url-shift#readme",
   "devDependencies": {
-    "vue": "3.2.29"
+    "vue": "3.2.30"
   }
 }
