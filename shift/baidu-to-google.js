@@ -1,3 +1,4 @@
+// origin
 define(() => {
     return (request) => {
         if (/^https:\/\/(www\.)?baidu\.com\/.*/.test(request.url)) {

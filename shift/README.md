@@ -1,6 +1,6 @@
 # Shift
 
-### Sample
+### Sample for origin
 
 #### Redirect Baidu to Google
 

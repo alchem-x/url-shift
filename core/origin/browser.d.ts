@@ -20,6 +20,9 @@ declare const browser: {
         openOptionsPage: Function
     }
     chrome: boolean
+    tabs: {
+        getCurrent: Function
+    }
 }
 
 declare const chrome: typeof browser

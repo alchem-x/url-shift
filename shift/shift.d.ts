@@ -35,4 +35,7 @@ declare interface BlockingResponse {
     requestHeaders?: HttpHeader[] | undefined
 }
 
-declare const define: (factory: () => (details: WebRequestDetails) => BlockingResponse | void) => void
+type OriginDefine = (factory: () => (details: WebRequestDetails) => BlockingResponse | void) => void
+type RuleDefine = (factory: () => Array<unknown>) => void
+
+declare const define: OriginDefine | RuleDefine
