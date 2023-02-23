@@ -1,5 +1,5 @@
-import { css, getShiftInSandbox } from './modules.js'
-import { getEnabledStatus, setEnabledStatus, STORE_KEY } from '../store.js'
+import { assert, css, getShiftInSandbox, LightTip } from './modules.js'
+import { getEnabledStatus, getShiftList, setEnabledStatus, STORE_KEY, updateShift } from '../store.js'
 import browser from '../browser.js'
 
 const AppClassName = css`
@@ -49,9 +49,16 @@ const ShiftTableClassName = css`
   .td-action {
     text-align: center;
   }
+  
+  .script-container {
+    max-width: 800px;
+    overflow: auto;
+  }
 `
 
-document.querySelector('#app').innerHTML = `
+const $ = document.querySelector.bind(document)
+
+$('#app').innerHTML = `
       <div class="${AppClassName}">
         <div class="${HeaderClassName}">
             <span class="title">
@@ -76,18 +83,34 @@ document.querySelector('#app').innerHTML = `
                             <input  type="text" class="ui-input td-url-input" placeholder="Enter URL">
                         </td>   
                         <td class="td-action">
-                           <button class="ui-button">Reload</button>
+                           <button class="ui-button button-reload">Reload</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="script-container">
+                                <code>
+                                    <pre class="rule-script"></pre>
+                                </code>     
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        
       </div>
 `
 
+async function getShift0() {
+    const shiftList = await getShiftList()
+    assert(shiftList.length, 'Empty shift list')
+    return shiftList[0]
+}
+
 async function main() {
     // switch
-    const switchRef = document.querySelector('.shift-switch')
+    const switchRef = $('.shift-switch')
     switchRef.checked = await getEnabledStatus()
     browser.storage.onChanged.addListener((ev) => {
         if (ev[STORE_KEY.ENABLED]) {
@@ -101,7 +124,38 @@ async function main() {
         const checked = ev.target.checked
         await setEnabledStatus(checked)
     })
-    //
+    // url input
+    const shift0 = await getShift0()
+    $('.ui-input.td-url-input').value = shift0.url || ''
+    $('.rule-script').innerHTML = shift0.script || ''
+
+    // reload button
+    const reloadButtonRef = $('.button-reload')
+    reloadButtonRef.addEventListener('click', async (ev) => {
+        try {
+            reloadButtonRef.disabled = true
+            const url = $('.ui-input.td-url-input').value
+            const response = await fetch(url)
+            const script = await response.text()
+            const rules = await getShiftInSandbox(script)
+            const shift0 = await getShift0()
+            await updateShift({
+                ...shift0,
+                url,
+                script,
+                rules,
+            })
+            $('.rule-script').innerHTML = script
+            LightTip.success('Reload succeeded')
+        } catch (err) {
+            console.error(err)
+            if (err.message) {
+                LightTip.error(err.message)
+            }
+        } finally {
+            reloadButtonRef.disabled = false
+        }
+    })
 }
 
 main().catch((err) => console.error(err))

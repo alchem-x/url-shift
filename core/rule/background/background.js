@@ -7,19 +7,48 @@ const context = {
     enabled: false,
 }
 
-function handleBeforeRequest(request) {
-    if (!context.enabled) {
-        return
-    }
-    for (const { shift, enabled } of context.shiftList) {
-        if (!enabled) {
-            continue
-        }
-        const response = shift(request)
-        if (response) {
-            return response
-        }
-    }
+async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
+    const addRules = shiftList
+        .filter((it) => it.enabled)
+        .map((it) => it.rules.map((rule, index) => {
+            return {
+                id: it.id + index,
+                priority: 1,
+                action: {
+                    type: 'redirect',
+                    redirect: {
+                        url: rule.redirectUrl
+                    }
+                },
+                condition: {
+                    urlFilter: rule.urlFilter,
+                    resourceTypes: [
+                        'csp_report',
+                        'font',
+                        'image',
+                        'main_frame',
+                        'media',
+                        'object',
+                        'other',
+                        'ping',
+                        'script',
+                        'stylesheet',
+                        'sub_frame',
+                        'webbundle',
+                        'websocket',
+                        'webtransport',
+                        'xmlhttprequest',
+                    ]
+                }
+            }
+        }))
+        .flatMap((it) => it)
+    const dynamicRules = await browser.declarativeNetRequest.getDynamicRules()
+    const removeRuleIds = dynamicRules.map((it) => it.id)
+    await browser.declarativeNetRequest.updateDynamicRules({
+        addRules,
+        removeRuleIds,
+    })
 }
 
 async function main() {
@@ -30,23 +59,34 @@ async function main() {
 
     if (!context.shiftList.length) {
         await appendShift({
-            name: '',
+            name: 'shift0',
             url: '',
         })
     }
 
-    browser.storage.onChanged.addListener((ev) => {
+    async function reloadDynamicRules() {
+        if (context.enabled) {
+            await applyDeclarativeNetRequestDynamicRules(context.shiftList)
+        } else {
+            await applyDeclarativeNetRequestDynamicRules([])
+        }
+    }
+
+    browser.storage.onChanged.addListener(async (ev) => {
         //
         if (ev[STORE_KEY.ENABLED]) {
             const enabled = ev[STORE_KEY.ENABLED].newValue
             context.enabled = enabled
-            updateIcon(enabled)
+            await updateIcon(enabled)
+            await reloadDynamicRules()
         }
         //
         if (ev[STORE_KEY.SHIFT_LIST]) {
             context.shiftList = ev[STORE_KEY.SHIFT_LIST].newValue
+            await reloadDynamicRules()
         }
     })
+    await reloadDynamicRules()
 }
 
 main().catch((err) => console.error(err))

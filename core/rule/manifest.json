@@ -9,10 +9,8 @@
     "type": "module"
   },
   "permissions": [
-    "tabs",
-    "webRequest",
     "storage",
-    "scripting"
+    "declarativeNetRequest"
   ],
   "host_permissions": [
     "<all_urls>"

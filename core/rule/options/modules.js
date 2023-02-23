@@ -15,3 +15,9 @@ export function getShiftInSandbox(script) {
         iframe.contentWindow.postMessage(script, '*');
     })
 }
+
+export function assert(flag, message) {
+    if (!flag) {
+        throw new Error(message)
+    }
+}

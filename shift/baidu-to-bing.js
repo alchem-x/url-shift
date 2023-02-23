@@ -1,9 +1,10 @@
 // rule
+// see: https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 define(() => {
     return [
         {
-            pattern: /^https:\/\/(www\.)?baidu\.com\/.*/,
-            redirectUrl: 'https://www.google.com/',
+            urlFilter: 'baidu.com',
+            redirectUrl: 'https://www.bing.com/',
         },
     ]
 })

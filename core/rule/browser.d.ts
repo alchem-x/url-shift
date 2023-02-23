@@ -11,17 +11,16 @@ declare const browser: {
     action: {
         setIcon: Function
     }
-    webRequest: {
-        onBeforeRequest: {
-            addListener: (listener: Function, filter: object, extraInfoSpec: Array<string>) => unknown
-        }
-    }
     runtime: {
         openOptionsPage: Function
     }
     chrome: boolean
     scripting: {
         executeScript: Function
+    }
+    declarativeNetRequest: {
+        updateDynamicRules: Function
+        getDynamicRules:Function
     }
 }
 
