@@ -51,7 +51,6 @@ const ShiftTableClassName = css`
   }
   
   .script-container {
-    max-width: 800px;
     overflow: auto;
   }
 `
