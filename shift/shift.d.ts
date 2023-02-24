@@ -36,6 +36,12 @@ declare interface BlockingResponse {
 }
 
 type OriginDefine = (factory: () => (details: WebRequestDetails) => BlockingResponse | void) => void
-type RuleDefine = (factory: () => Array<unknown>) => void
+
+declare interface Rule {
+    urlFilter: string
+    redirectUrl: string
+}
+
+type RuleDefine = (factory: () => Array<Rule>) => void
 
 declare const define: OriginDefine | RuleDefine
