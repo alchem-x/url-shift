@@ -49,9 +49,13 @@ const ShiftTableClassName = css`
   .td-action {
     text-align: center;
   }
-  
+
   .script-container {
     overflow: auto;
+    
+    pre {
+      margin: 0;
+    }
   }
 `
 
@@ -134,7 +138,11 @@ async function main() {
         try {
             reloadButtonRef.disabled = true
             const url = $('.ui-input.td-url-input').value
-            const response = await fetch(url)
+            const response = await fetch(url,{
+                headers: {
+                    'cache-control': 'no-store',
+                }
+            })
             const script = await response.text()
             const rules = await getShiftInSandbox(script)
             const shift0 = await getShift0()
