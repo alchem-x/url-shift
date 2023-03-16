@@ -31,6 +31,10 @@ const HeaderClassName = css`
 
 const ShiftTableClassName = css`
   margin-top: 2rem;
+  
+  .shift-table {
+    width: 100%;
+  }
 
   .th-url {
     width: 80%;
@@ -73,7 +77,7 @@ $('#app').innerHTML = `
             </label>
         </div>
         <div class="${ShiftTableClassName}">
-            <table class="ui-table">
+            <table class="ui-table shift-table">
                 <thead>
                     <tr>
                         <th class="th-url">URL</th>

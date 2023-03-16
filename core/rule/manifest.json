@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "URL Shift",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Intercept HTTP requests through rules written in JavaScript.",
   "homepage_url": "https://github.com/alchemy-works/url-shift",
   "background": {
