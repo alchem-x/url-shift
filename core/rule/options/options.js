@@ -144,7 +144,8 @@ async function main() {
             const url = $('.ui-input.td-url-input').value
             const response = await fetch(url,{
                 headers: {
-                    'cache-control': 'no-store',
+                    'pragma': 'no-cache',
+                    'cache-control': 'no-cache',
                 }
             })
             const script = await response.text()

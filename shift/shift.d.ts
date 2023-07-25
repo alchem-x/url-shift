@@ -38,8 +38,18 @@ declare interface BlockingResponse {
 type OriginDefine = (factory: () => (details: WebRequestDetails) => BlockingResponse | void) => void
 
 declare interface Rule {
-    urlFilter: string
-    redirectUrl: string
+    condition: {
+        urlFilter?: string
+        regexFilter?: string
+    }
+    action: {
+        type: 'block' | 'redirect'
+        redirect?: {
+            url?: string
+            extensionPath?: string
+            regexSubstitution?: string
+        }
+    }
 }
 
 type RuleDefine = (factory: () => Array<Rule>) => void

@@ -7,41 +7,42 @@ const context = {
     enabled: false,
 }
 
+const defaultResourceTypes = [
+    'csp_report',
+    'font',
+    'image',
+    'main_frame',
+    'media',
+    'object',
+    'other',
+    'ping',
+    'script',
+    'stylesheet',
+    'sub_frame',
+    'webbundle',
+    'websocket',
+    'webtransport',
+    'xmlhttprequest',
+]
+
 async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
     const addRules = shiftList
         .filter((it) => it.enabled)
-        .map((it) => it.rules.map((rule, index) => {
-            return {
-                id: it.id + index,
-                priority: 1,
-                action: {
-                    type: 'redirect',
-                    redirect: {
-                        url: rule.redirectUrl
+        .map((it) => {
+            return it.rules.map((rule, index) => {
+                return {
+                    id: it.id + index,
+                    priority: 1,
+                    action: {
+                        ...(rule.action ?? {}),
+                    },
+                    condition: {
+                        resourceTypes: defaultResourceTypes,
+                        ...(rule.condition ?? {}),
                     }
-                },
-                condition: {
-                    urlFilter: rule.urlFilter,
-                    resourceTypes: [
-                        'csp_report',
-                        'font',
-                        'image',
-                        'main_frame',
-                        'media',
-                        'object',
-                        'other',
-                        'ping',
-                        'script',
-                        'stylesheet',
-                        'sub_frame',
-                        'webbundle',
-                        'websocket',
-                        'webtransport',
-                        'xmlhttprequest',
-                    ]
                 }
-            }
-        }))
+            })
+        })
         .flatMap((it) => it)
     const dynamicRules = await browser.declarativeNetRequest.getDynamicRules()
     const removeRuleIds = dynamicRules.map((it) => it.id)
