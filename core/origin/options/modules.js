@@ -1,5 +1,0 @@
-export const { createApp, ref, onMounted } = window['Vue']
-export const { css } = window['emotion']
-export const Dialog = window['Dialog']
-export const LightTip = window['LightTip']
-export const hljs = window['hljs']
