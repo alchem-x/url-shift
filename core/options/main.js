@@ -3,7 +3,7 @@ import { appendShift, getEnabledStatus, getShiftList, setEnabledStatus, STORE_KE
 
 const AppClassName = css`
   box-sizing: border-box;
-  max-width: 1000px;
+  max-width: 1480px;
   padding: 2rem 1rem;
   min-height: 100vh;
   margin: 0 auto;
