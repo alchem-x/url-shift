@@ -1,5 +1,5 @@
 import { getEnabledStatus, getShiftList, STORE_KEY } from '../store.js'
-import updateIcon from '../updateIcon.js'
+import onEnabledChange from '../onEnabledChange.js'
 
 const context = {
     shiftList: [],
@@ -55,7 +55,7 @@ async function main() {
     context.shiftList = await getShiftList()
     context.enabled = await getEnabledStatus()
     //
-    await updateIcon(context.enabled)
+    await onEnabledChange(context.enabled)
 
     async function reloadDynamicRules() {
         if (context.enabled) {
@@ -70,7 +70,7 @@ async function main() {
         if (ev[STORE_KEY.ENABLED]) {
             const enabled = ev[STORE_KEY.ENABLED].newValue
             context.enabled = enabled
-            await updateIcon(enabled)
+            await onEnabledChange(enabled)
             await reloadDynamicRules()
         }
         //
