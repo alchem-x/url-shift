@@ -52,6 +52,10 @@ async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
 }
 
 async function main() {
+    chrome.action.onClicked.addListener((ev) => {
+        chrome.runtime.openOptionsPage()
+    })
+
     context.shiftList = await getShiftList()
     context.enabled = await getEnabledStatus()
     //
@@ -78,10 +82,6 @@ async function main() {
             context.shiftList = ev[STORE_KEY.SHIFT_LIST].newValue
             await reloadDynamicRules()
         }
-    })
-
-    chrome.action.onClicked.addListener((ev) => {
-        chrome.runtime.openOptionsPage()
     })
 
     await reloadDynamicRules()
