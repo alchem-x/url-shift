@@ -140,6 +140,10 @@ async function main() {
         try {
             reloadButtonRef.disabled = true
             const url = $('.ui-input.td-url-input').value
+            if (!url.trim()) {
+                LightTip.error('Please enter URL')
+                return
+            }
             const response = await fetch(url, {
                 headers: {
                     'pragma': 'no-cache',
@@ -168,8 +172,9 @@ async function main() {
             LightTip.success('Reload succeeded')
         } catch (err) {
             console.error(err)
-            if (err.message) {
-                LightTip.error(err.message)
+            const errorString = err.message || err.toString()
+            if (errorString) {
+                LightTip.error(errorString)
             }
         } finally {
             reloadButtonRef.disabled = false

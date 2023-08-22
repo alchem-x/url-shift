@@ -10,14 +10,18 @@
 <body>
 <script>
     function getShiftList(script) {
-        let shiftRuleList
+        const result = {}
 
         function define(factory) {
-            shiftRuleList = factory()
+            result.data = factory()
         }
 
-        new Function('define', script)(define)
-        return shiftRuleList
+        try {
+            new Function('define', script)(define)
+        } catch (err) {
+            result.error = err.message
+        }
+        return result
     }
 
     window.addEventListener('message', async (event) => {
