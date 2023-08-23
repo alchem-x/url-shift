@@ -3,7 +3,7 @@ import { appendShift, getEnabledStatus, getShiftList, setEnabledStatus, STORE_KE
 
 const AppClassName = css`
   box-sizing: border-box;
-  max-width: 1480px;
+  max-width: 1280px;
   padding: 2rem 1rem;
   min-height: 100vh;
   margin: 0 auto;
@@ -151,7 +151,7 @@ async function main() {
 
     // reload button
     const reloadButtonRef = $('.button-reload')
-    reloadButtonRef.addEventListener('click', async (ev) => {
+    reloadButtonRef.addEventListener('click', async () => {
         try {
             reloadButtonRef.disabled = true
             const url = $('.ui-input.td-url-input').value

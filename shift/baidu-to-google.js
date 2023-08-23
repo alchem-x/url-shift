@@ -9,7 +9,7 @@ define(() => {
             action: {
                 type: 'redirect',
                 redirect: {
-                    url: 'https://www.bing.com/',
+                    url: 'https://www.google.com/',
                 }
             },
         },

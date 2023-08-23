@@ -52,7 +52,7 @@ async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
 }
 
 async function main() {
-    chrome.action.onClicked.addListener((ev) => {
+    chrome.action.onClicked.addListener(() => {
         chrome.runtime.openOptionsPage()
     })
 

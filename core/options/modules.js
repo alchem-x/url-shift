@@ -23,6 +23,6 @@ export function getShiftInSandbox(script) {
         window.addEventListener('message', callback)
 
         const iframe = document.querySelector('#sandbox')
-        iframe.contentWindow.postMessage(script, '*');
+        iframe.contentWindow.postMessage(script, '*')
     })
 }
