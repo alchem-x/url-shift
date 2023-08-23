@@ -1,5 +1,5 @@
 // Rule sample
-// see: https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
+// See: https://developer.chrome.com/docs/extensions/reference/declarativeNetRequest/
 define(() => {
     return [
         {
