@@ -7,11 +7,17 @@ const AppClassName = css`
   padding: 2rem 1rem;
   min-height: 100vh;
   margin: 0 auto;
+
+  a {
+    color: var(--ui-blue, #2a80eb);
+    text-decoration-line: none;
+  }
 `
 
 const HeaderClassName = css`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   > .title {
     font-weight: bold;
@@ -25,6 +31,12 @@ const HeaderClassName = css`
   > .title > .icon {
     width: 2rem;
     height: 2rem;
+  }
+
+  .block-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 `
 
@@ -71,9 +83,12 @@ $('#app').innerHTML = `
                 <img class="icon" src="/icon.png" alt="">
                 <span>URL Shift</span>
             </span>
-            <label>
-                <input class="shift-switch" type="checkbox" is="ui-switch">
-            </label>
+            <div class="block-right">
+                <a href="https://github.com/alchemy-works/url-shift" target="_blank">Docs</a>
+                <label>
+                    <input class="shift-switch" type="checkbox" is="ui-switch">
+                </label>
+            </div>
         </div>
         <div class="${ShiftTableClassName}">
             <table class="ui-table shift-table">
