@@ -1,4 +1,4 @@
-import { css, getShiftInSandbox, LightTip } from './modules.js'
+import { css, getShiftInSandbox, LightTip } from './deps.js'
 import { appendShift, getEnabledStatus, getShiftList, setEnabledStatus, STORE_KEY, updateShift } from '../store.js'
 
 const AppClassName = css`

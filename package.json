@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/alchemy-works/url-shift#readme",
   "devDependencies": {
-    "@types/chrome": "^0.0.243"
+    "@emotion/css": "^11.11.2",
+    "@types/chrome": "^0.0.268"
   }
 }
