@@ -14,7 +14,7 @@ async function setItem(key, value) {
     await chrome.storage.local.set({ [key]: value })
 }
 
-async function getNextId() {
+export async function getNextId() {
     const id = await getItem(STORE_KEY.ID)
     const newId = id ? id + 1 : 1
     await setItem(STORE_KEY.ID, newId)
@@ -34,19 +34,21 @@ export async function setShiftList(shiftList) {
 }
 
 export async function getShiftList() {
-    return await getItem(STORE_KEY.SHIFT_LIST) || []
+    const sl = await getItem(STORE_KEY.SHIFT_LIST)
+    return Array.isArray(sl) ? sl : []
 }
 
 export async function appendShift(shift) {
+    const added = {
+        ...shift,
+        id: await getNextId(),
+        script: await fetchScript(shift.url),
+    }
     await setShiftList([
         ...(await getShiftList()),
-        {
-            ...shift,
-            id: await getNextId(),
-            script: await fetchScript(shift.url),
-            enabled: true,
-        }
+        added,
     ])
+    return added
 }
 
 export async function deleteShift(id) {

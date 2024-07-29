@@ -43,6 +43,7 @@ async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
             })
         })
         .flatMap((it) => it)
+    console.log('addRules', addRules)
     const dynamicRules = await chrome.declarativeNetRequest.getDynamicRules()
     const removeRuleIds = dynamicRules.map((it) => it.id)
     await chrome.declarativeNetRequest.updateDynamicRules({
