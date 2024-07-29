@@ -60,7 +60,7 @@ export default defineComponent({
                 </td>
                 <td class="td-action">
                     <button onClick=${onReload} class="ui-button button-reload" data-type="primary">
-                        Reload
+                        ${item.script ? 'Reload ↺' : 'Load 🚀'}
                     </button>
                     <button class="ui-button" data-type="normal"
                             onClick="${onToggleShowDetails}">

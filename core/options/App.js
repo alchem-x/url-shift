@@ -63,7 +63,7 @@ export default defineComponent({
                 <${Header} state="${state}"/>
                 <${ShiftTable} state="${state}"/>
                 <div class="bottom-action">
-                    <button onClick="${onNew}" class="ui-button" data-type="primary">Add</button>
+                    <button onClick="${onNew}" class="ui-button" data-type="primary">New</button>
                 </div>
             </div>
         `

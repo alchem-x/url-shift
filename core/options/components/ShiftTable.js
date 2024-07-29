@@ -26,6 +26,7 @@ const ShiftTableClassName = css`
         display: flex;
         gap: 8px;
         justify-content: center;
+        align-items: center;
     }
 
     .script-container {
