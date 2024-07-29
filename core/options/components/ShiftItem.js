@@ -66,6 +66,12 @@ export default defineComponent({
                             onClick="${onToggleShowDetails}">
                         ${item.showDetails ? 'Details ↑' : 'Details ↓'}
                     </button>
+                    <label>
+                        <input onInput="${onChangeEnabled}"
+                                checked="${item.enabled}" class="shift-switch"
+                                type="checkbox"
+                                is="ui-switch"/>
+                    </label>
                 </td>
             </tr>
             ${item.showDetails && html`
@@ -77,12 +83,6 @@ export default defineComponent({
                             </code>
                         </div>
                         <div class="details-action">
-                            <label>
-                                <input onInput="${onChangeEnabled}"
-                                       checked="${item.enabled}" class="shift-switch"
-                                       type="checkbox"
-                                       is="ui-switch"/>
-                            </label>
                             <button onClick="${onDelete}" class="ui-button" data-type="danger">
                                 Delete
                             </button>
