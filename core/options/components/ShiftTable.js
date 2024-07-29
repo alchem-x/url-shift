@@ -13,7 +13,7 @@ const ShiftTableClassName = css`
     }
 
     .th-action {
-        width: 20%;
+        width: 25%;
     }
 
     .td-url {
