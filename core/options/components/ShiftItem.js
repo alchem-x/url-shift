@@ -1,5 +1,6 @@
 import { defineComponent, html, LightTip } from '../deps.js'
 import { getShiftInSandbox } from '../sandbox.js'
+import ConfigInput from './ConfigInput.js'
 
 export default defineComponent({
     props: {
@@ -25,7 +26,13 @@ export default defineComponent({
                     }
                 })
                 item.script = await response.text()
-                item.rules = await getShiftInSandbox(item.script)
+                const config = await getShiftInSandbox(item.script)
+                if (Array.isArray(config)) {
+                    item.rules = config
+                } else {
+                    item.rules = config.rules ?? []
+                    item.name = config.name ?? ''
+                }
                 LightTip.success('Reload succeeded')
             } catch (err) {
                 console.error(err)
@@ -48,19 +55,20 @@ export default defineComponent({
         async onDelete() {
             this.$emit('delete')
         },
+        onUrlInput(ev) {
+            const item = this.item
+            item.url = ev.target.value
+        },
     },
-    render({ item, onReload, onChangeEnabled, onToggleShowDetails, onDelete }) {
+    render({ item, onReload, onChangeEnabled, onToggleShowDetails, onDelete, onUrlInput }) {
         return html`
             <tr>
                 <td class="td-url">
-                    <input value="${item.url}" type="text"
-                           onInput="${ev => item.url = ev.target.value}"
-                           class="ui-input td-url-input"
-                           placeholder="Enter URL"/>
+                    <${ConfigInput} url="${item.url}" name="${item.name}" onInput="${onUrlInput}"/>
                 </td>
                 <td class="td-action">
                     <button onClick=${onReload} class="ui-button button-reload" data-type="primary">
-                        ${item.script ? 'Reload ↺' : 'Load 🚀'}
+                        ${item.script ? 'Reload ↺' : 'Load ↺'}
                     </button>
                     <button class="ui-button" data-type="normal"
                             onClick="${onToggleShowDetails}">
