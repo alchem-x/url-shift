@@ -25,7 +25,7 @@ const ShiftTableClassName = css`
     .td-action {
         display: flex;
         gap: 8px;
-        justify-content: center;
+        flex-wrap: wrap;
         align-items: center;
     }
 
