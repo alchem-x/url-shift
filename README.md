@@ -9,4 +9,4 @@ Fetch the shift rules from the URL (or Data URL), the rules are written in JavaS
 
 ---
 
-- [Add-on for Firefox](https://addons.mozilla.org/en-US/firefox/addon/url-shift/): This is legacy version, see [#1](https://github.com/alchemy-works/url-shift/issues/1) 
+- [Add-on for Firefox](https://addons.mozilla.org/en-US/firefox/addon/url-shift/): This is legacy version, see [#1](https://github.com/alchemy-works/url-shift/issues/1)

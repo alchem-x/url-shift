@@ -1,32 +1,34 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Sandbox</title>
-</head>
-<body>
-<script>
-    function getShiftList(script) {
+  </head>
+  <body>
+    <script>
+      function getShiftList(script) {
         const result = {}
 
         function define(factory) {
-            result.data = factory()
+          result.data = factory()
         }
 
         try {
-            new Function('define', script)(define)
+          new Function('define', script)(define)
         } catch (err) {
-            result.error = err.message
+          result.error = err.message
         }
         return result
-    }
+      }
 
-    window.addEventListener('message', async (event) => {
-        event.source.window.postMessage(getShiftList(event.data), event.origin);
-    })
-</script>
-</body>
+      window.addEventListener('message', async (event) => {
+        event.source.window.postMessage(getShiftList(event.data), event.origin)
+      })
+    </script>
+  </body>
 </html>

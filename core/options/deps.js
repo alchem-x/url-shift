@@ -12,6 +12,5 @@ export const { css } = window['emotion']
 export const Dialog = window['Dialog']
 export const LightTip = window['LightTip']
 const htm = window['htm']
-export const { createApp, defineComponent, h, toRaw, } = window['Vue']
+export const { createApp, defineComponent, h, toRaw } = window['Vue']
 export const html = htm.bind(h)
-
