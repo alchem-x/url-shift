@@ -5,6 +5,6 @@ if [ -f url-shift.zip ]; then
     rm url-shift.zip
 fi
 
-cd core
+cd core || exit
 
 zip -r ../url-shift.zip *
