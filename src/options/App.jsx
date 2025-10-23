@@ -1,7 +1,8 @@
-import { css, defineComponent, html, toRaw } from './deps.js'
-import Header from './components/Header.js'
-import ShiftTable from './components/ShiftTable.js'
-import { getEnabledStatus, getNextId, getShiftList, setEnabledStatus, setShiftList } from '../store.js'
+import { defineComponent, toRaw } from 'vue'
+import { css } from '@emotion/css'
+import Header from '@/options/components/Header.jsx'
+import ShiftTable from '@/options/components/ShiftTable.jsx'
+import { getEnabledStatus, getNextId, getShiftList, setEnabledStatus, setShiftList } from '@/common/store.js'
 
 const AppClassName = css`
   box-sizing: border-box;
@@ -58,14 +59,16 @@ export default defineComponent({
     },
   },
   render({ state, onNew }) {
-    return html`
-      <div class="${AppClassName}">
-        <${Header} state="${state}" />
-        <${ShiftTable} state="${state}" />
+    return (
+      <div class={AppClassName}>
+        <Header state={state} />
+        <ShiftTable state={state} />
         <div class="bottom-action">
-          <button onClick="${onNew}" class="ui-button" data-type="primary">New</button>
+          <button onClick={onNew} class="ui-button" data-type="primary">
+            New
+          </button>
         </div>
       </div>
-    `
+    )
   },
 })

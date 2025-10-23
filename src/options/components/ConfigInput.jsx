@@ -1,4 +1,4 @@
-import { defineComponent, html } from '../deps.js'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   props: {
@@ -11,19 +11,19 @@ export default defineComponent({
   },
   data() {
     return {
-      focusd: false,
+      focused: false,
     }
   },
-  render({ url, name, focusd }) {
-    return html`
+  render({ url, name, focused }) {
+    return (
       <input
-        value="${focusd ? url : name || url}"
+        value={focused ? url : name || url}
         type="text"
-        onFocus="${() => (this.focusd = true)}"
-        onBlur="${() => (this.focusd = false)}"
+        onFocus={() => (this.focused = true)}
+        onBlur={() => (this.focused = false)}
         class="ui-input td-url-input"
         placeholder="Enter URL"
       />
-    `
+    )
   },
 })

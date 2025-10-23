@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 cd "$(dirname "$0")" || exit 1
 
-if [ -f url-shift.zip ]; then
-    rm url-shift.zip
-fi
+rm -rf dist
+pnpm build
+rm -rf dist/*.LICENSE.txt
 
-cd core || exit
-
-zip -r ../url-shift.zip *
+(cd dist && zip -r url-shift.zip .)

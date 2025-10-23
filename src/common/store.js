@@ -1,4 +1,5 @@
-import { fetchScript } from './shift.js'
+import { fetchScript } from '@/common/shift.js'
+import { browserAPI } from '@/common/browser-api.js'
 
 export const STORE_KEY = {
   ID: 'ID',
@@ -7,11 +8,11 @@ export const STORE_KEY = {
 }
 
 async function getItem(key) {
-  return (await chrome.storage.local.get())[key]
+  return (await browserAPI.storage.local.get())[key]
 }
 
 async function setItem(key, value) {
-  await chrome.storage.local.set({ [key]: value })
+  await browserAPI.storage.local.set({ [key]: value })
 }
 
 export async function getNextId() {

@@ -1,5 +1,5 @@
-import { createApp, h } from './deps.js'
-import App from './App.js'
+import { createApp, h } from 'vue'
+import App from './App.jsx'
 
 function main() {
   const app = createApp({

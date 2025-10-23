@@ -4,23 +4,38 @@
   "description": "",
   "main": "shift.js",
   "scripts": {
-    "format": "prettier --write --cache ."
+    "watch": "webpack --watch",
+    "build": "webpack --mode=production",
+    "format": "prettier --write --cache .",
+    "type-check": "tsc --noEmit"
   },
+  "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alchemy-works/url-shift.git"
+    "url": "git+https://github.com/alchem-x/url-shift.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/alchemy-works/url-shift/issues"
+    "url": "https://github.com/alchem-x/url-shift/issues"
   },
-  "homepage": "https://github.com/alchemy-works/url-shift#readme",
+  "homepage": "https://github.com/alchem-x/url-shift#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.28.5",
+    "@babel/preset-typescript": "^7.28.5",
     "@emotion/css": "^11.13.5",
     "@types/chrome": "^0.1.24",
+    "@vue/babel-plugin-jsx": "^2.0.1",
+    "babel-loader": "^10.0.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "lu2": "^2025.7.2",
+    "mini-css-extract-plugin": "^2.9.4",
     "prettier": "^3.6.2",
-    "vue": "^3.5.22"
+    "vue": "^3.5.22",
+    "webpack": "^5.102.1",
+    "webpack-cli": "^6.0.1"
   }
 }

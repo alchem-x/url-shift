@@ -1,5 +1,6 @@
-import { getEnabledStatus, getShiftList, STORE_KEY } from '../store.js'
-import onEnabledChange from '../onEnabledChange.js'
+import { getEnabledStatus, getShiftList, STORE_KEY } from '@/common/store.js'
+import onEnabledChange from '@/common/onEnabledChange.js'
+import { browserAPI } from '@/common/browser-api.js'
 
 const context = {
   shiftList: [],
@@ -43,17 +44,17 @@ async function applyDeclarativeNetRequestDynamicRules(shiftList = []) {
       })
     })
     .flatMap((it) => it)
-  const dynamicRules = await chrome.declarativeNetRequest.getDynamicRules()
+  const dynamicRules = await browserAPI.declarativeNetRequest.getDynamicRules()
   const removeRuleIds = dynamicRules.map((it) => it.id)
-  await chrome.declarativeNetRequest.updateDynamicRules({
+  await browserAPI.declarativeNetRequest.updateDynamicRules({
     addRules,
     removeRuleIds,
   })
 }
 
 async function main() {
-  chrome.action.onClicked.addListener(() => {
-    chrome.runtime.openOptionsPage()
+  browserAPI.action.onClicked.addListener(() => {
+    browserAPI.runtime.openOptionsPage()
   })
 
   context.shiftList = await getShiftList()
@@ -69,7 +70,7 @@ async function main() {
     }
   }
 
-  chrome.storage.onChanged.addListener(async (ev) => {
+  browserAPI.storage.onChanged.addListener(async (ev) => {
     //
     if (ev[STORE_KEY.ENABLED]) {
       const enabled = ev[STORE_KEY.ENABLED].newValue

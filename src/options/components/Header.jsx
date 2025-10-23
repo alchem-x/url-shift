@@ -1,4 +1,5 @@
-import { css, defineComponent, html } from '../deps.js'
+import { defineComponent } from 'vue'
+import { css } from '@emotion/css'
 
 const HeaderClassName = css`
   display: flex;
@@ -39,18 +40,20 @@ export default defineComponent({
     },
   },
   render({ state, onSwitchChange }) {
-    return html`
-      <div class=${HeaderClassName}>
+    return (
+      <div class={HeaderClassName}>
         <span class="title">
-          <img class="icon" src="${'/icon.png'}" alt="" />
+          <img class="icon" src={'/icon.png'} alt="" />
           <span>URL Shift</span>
         </span>
         <div class="block-right">
-          <a href="https://github.com/alchemy-works/url-shift" target="_blank">Docs</a>
+          <a href="https://github.com/alchem-x/url-shift" target="_blank">
+            Docs
+          </a>
           <label>
             <input
-              onInput="${onSwitchChange}"
-              checked="${state.enabledStatus}"
+              onInput={onSwitchChange}
+              checked={state.enabledStatus}
               class="shift-switch"
               type="checkbox"
               is="ui-switch"
@@ -58,6 +61,6 @@ export default defineComponent({
           </label>
         </div>
       </div>
-    `
+    )
   },
 })

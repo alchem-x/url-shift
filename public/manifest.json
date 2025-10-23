@@ -1,17 +1,17 @@
 {
   "manifest_version": 3,
   "name": "URL Shift",
-  "version": "0.6.4",
+  "version": "0.7.0",
   "description": "Intercept HTTP requests through rules written in JavaScript.",
   "homepage_url": "https://github.com/alchem-x/url-shift",
   "background": {
-    "service_worker": "background/background.js",
+    "service_worker": "background.js",
     "type": "module"
   },
   "permissions": ["storage", "declarativeNetRequest"],
   "host_permissions": ["<all_urls>"],
   "options_ui": {
-    "page": "options/index.html",
+    "page": "options.html",
     "open_in_tab": true
   },
   "action": {
@@ -19,7 +19,7 @@
     "default_title": "URL Shift"
   },
   "sandbox": {
-    "pages": ["options/sandbox.html"]
+    "pages": ["sandbox.html"]
   },
   "icons": {
     "48": "icon.png"

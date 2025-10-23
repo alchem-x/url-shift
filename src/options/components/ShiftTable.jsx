@@ -1,5 +1,6 @@
-import { css, defineComponent, html } from '../deps.js'
-import ShiftItem from './ShiftItem.js'
+import { defineComponent } from 'vue'
+import { css } from '@emotion/css'
+import ShiftItem from '@/options/components/ShiftItem.jsx'
 
 const ShiftTableClassName = css`
   margin-top: 2rem;
@@ -67,8 +68,8 @@ export default defineComponent({
     },
   },
   render({ state, onDelete }) {
-    return html`
-      <div class="${ShiftTableClassName}">
+    return (
+      <div class={ShiftTableClassName}>
         <table class="ui-table shift-table">
           <thead>
             <tr>
@@ -77,16 +78,19 @@ export default defineComponent({
             </tr>
           </thead>
           <tbody>
-            ${state.shiftList.map((it) => html` <${ShiftItem} item="${it}" onDelete="${() => onDelete(it)}" /> `)}
-            ${!state.shiftList.length &&
-            html`
+            {state.shiftList.map((it) => (
+              <ShiftItem item={it} onDelete={() => onDelete(it)} />
+            ))}
+            {!state.shiftList.length && (
               <tr>
-                <td class="td-empty" colspan="2">Empty</td>
+                <td class="td-empty" colspan="2">
+                  Empty
+                </td>
               </tr>
-            `}
+            )}
           </tbody>
         </table>
       </div>
-    `
+    )
   },
 })

@@ -1,6 +1,7 @@
-import { defineComponent, html, LightTip } from '../deps.js'
-import { getShiftInSandbox } from '../sandbox.js'
-import ConfigInput from './ConfigInput.js'
+import { defineComponent } from 'vue'
+import { LightTip } from '@/options/deps.js'
+import ConfigInput from '@/options/components/ConfigInput.jsx'
+import { getShiftInSandbox } from '@/options/sandbox.js'
 
 export default defineComponent({
   props: {
@@ -61,44 +62,47 @@ export default defineComponent({
     },
   },
   render({ item, onReload, onChangeEnabled, onToggleShowDetails, onDelete, onUrlInput }) {
-    return html`
-      <tr>
-        <td class="td-url">
-          <${ConfigInput} url="${item.url}" name="${item.name}" onInput="${onUrlInput}" />
-        </td>
-        <td class="td-action">
-          <button onClick=${onReload} class="ui-button button-reload" data-type="primary">
-            ${item.script ? 'Reload ↺' : 'Load ↺'}
-          </button>
-          <button class="ui-button" data-type="normal" onClick="${onToggleShowDetails}">
-            ${item.showDetails ? 'Details ↑' : 'Details ↓'}
-          </button>
-          <label>
-            <input
-              onInput="${onChangeEnabled}"
-              checked="${item.enabled}"
-              class="shift-switch"
-              type="checkbox"
-              is="ui-switch"
-            />
-          </label>
-        </td>
-      </tr>
-      ${item.showDetails &&
-      html`
+    return (
+      <>
         <tr>
-          <td colspan="2">
-            <div class="script-container">
-              <code>
-                <pre class="rule-script">${item.script}</pre>
-              </code>
-            </div>
-            <div class="details-action">
-              <button onClick="${onDelete}" class="ui-button" data-type="danger">Delete</button>
-            </div>
+          <td class="td-url">
+            <ConfigInput url={item.url} name={item.name} onInput={onUrlInput} />
+          </td>
+          <td class="td-action">
+            <button onClick={onReload} class="ui-button button-reload" data-type="primary">
+              {item.script ? 'Reload ↺' : 'Load ↺'}
+            </button>
+            <button class="ui-button" data-type="normal" onClick={onToggleShowDetails}>
+              {item.showDetails ? 'Details ↑' : 'Details ↓'}
+            </button>
+            <label>
+              <input
+                onInput={onChangeEnabled}
+                checked={item.enabled}
+                class="shift-switch"
+                type="checkbox"
+                is="ui-switch"
+              />
+            </label>
           </td>
         </tr>
-      `}
-    `
+        {item.showDetails && (
+          <tr>
+            <td colspan="2">
+              <div class="script-container">
+                <code>
+                  <pre class="rule-script">{item.script}</pre>
+                </code>
+              </div>
+              <div class="details-action">
+                <button onClick={onDelete} class="ui-button" data-type="danger">
+                  Delete
+                </button>
+              </div>
+            </td>
+          </tr>
+        )}
+      </>
+    )
   },
 })
