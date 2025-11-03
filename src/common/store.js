@@ -1,4 +1,4 @@
-import { fetchScript } from '@/common/shift.js'
+import { fetchScript } from '@/common/shift.ts'
 import { browserAPI } from '@/common/browser-api.js'
 
 export const STORE_KEY = {

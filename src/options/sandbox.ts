@@ -1,6 +1,6 @@
-export function getShiftInSandbox(script) {
+export function getShiftInSandbox(script: string) {
   return new Promise((resolve, reject) => {
-    function callback(ev) {
+    const callback = (ev: MessageEvent<{ error: Error | any; data: any }>) => {
       if (ev.data.error) {
         reject(ev.data.error)
       } else {
@@ -11,7 +11,7 @@ export function getShiftInSandbox(script) {
 
     window.addEventListener('message', callback)
 
-    const iframe = document.querySelector('#sandbox')
-    iframe.contentWindow.postMessage(script, '*')
+    const iframe = document.querySelector('#sandbox') as HTMLIFrameElement
+    iframe.contentWindow!.postMessage(script, '*')
   })
 }

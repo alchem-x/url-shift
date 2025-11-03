@@ -1,7 +1,7 @@
 import { defineComponent } from 'vue'
 import { LightTip } from '@/options/deps.js'
 import ConfigInput from '@/options/components/ConfigInput.jsx'
-import { getShiftInSandbox } from '@/options/sandbox.js'
+import { getShiftInSandbox } from '@/options/sandbox.ts'
 
 export default defineComponent({
   props: {
